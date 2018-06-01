@@ -1,12 +1,15 @@
 import java.util.*;
 
 public class useCiphers {
+	//This Class acts as User interface, making it easy to use the different ciphers
 
 	public static void main(String[] args) {
 		Scanner aScan = new Scanner(System.in);
 		System.out.println("\t\t Welcome to Bond Encryption.\n\t\t     by Leila and Bella");
+		//the Main Menu has two options: go to cipher menu and exit class
 		System.out.println("\n\t Enter the number for a corresponding action\n\t   1. Use a Cipher\n\t   2. Exit");
 		int action = aScan.nextInt();
+		//this while loops allows the user to back and forth between the main menu and the cipher menu
 		while (action != 2 && (action == 1)) {
 			if (action == 1) {
 				cipherMenu();
@@ -15,17 +18,20 @@ public class useCiphers {
 			System.out.println("\n\t Enter the number for a corresponding action\n\t   1. Use a Cipher\n\t    2. Exit");
 			action = aScan.nextInt();
 		}
-
+		
 		System.out.print("Exiting...");
 	}
 
 	public static void cipherMenu() {
 		Scanner aScan = new Scanner(System.in);
+		//cipher menu options: input decrypted message, try different ciphers, and return to main menu
 		System.out.println(
 				"\n\t Enter the number for a corresponding action\n\t   1. Compare all cipher decryptions of a message\n\t   2. Use atbash cipher \n\t   3. Use binary cipher \n\t   4. Use Leila's Cipher \n\t   5. Use Bella's Cipher. \n\t   6. Return to Main Menu");
 		int action = aScan.nextInt();
 		while (action < 6) {
+			//if the option is not to exit, execute one of the following:
 			if (action == 1) {
+				//this 
 				System.out.println("\tEnter your encrypted message: ");
 				String non = aScan.nextLine();
 				String code = aScan.nextLine();
@@ -33,6 +39,7 @@ public class useCiphers {
 				System.out.println("\nPress Enter to Continue.");
 				non = aScan.nextLine();
 			} else {
+				// recieves the message and/or encrypted message without submitting it to a cipher
 				System.out.println("\tEnter your message(Press enter if you don't have one):   ");
 				String non = aScan.nextLine();
 				String m = aScan.nextLine();
@@ -40,6 +47,7 @@ public class useCiphers {
 				String c = aScan.nextLine();
 
 				switch (action) {
+						// 
 
 				case 2:
 					try {
