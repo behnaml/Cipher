@@ -47,8 +47,8 @@ public class useCiphers {
 				String c = aScan.nextLine();
 
 				switch (action) {
-						// 
-
+				// this switch-case accounts for the different cipher types the user has chosen to use
+				// 2 = atbash, 3 = binary, 4 = leila, 5 = bella
 				case 2:
 					try {
 						atbash t1 = new atbash(m, c);
@@ -88,6 +88,7 @@ public class useCiphers {
 			System.out.println(
 					"\n\t Enter the number for a corresponding action\n\t   1. Compare all cipher decryptions of a message\n\t   2. Use atbash cipher \n\t   3. Use binary cipher \n\t   4. Use Leila's Cipher \n\t   5. Use Bella's Cipher. \n\t   6. Return to Main Menu");
 			action = aScan.nextInt();
+		//exits while loop if 6 is chosen
 		}
 	}
 
@@ -105,10 +106,18 @@ public class useCiphers {
 				//E.G. in atbash: 01000001 will be returned unchanged
 			//if the entered encrypted message contains errors
 				//E.G. for Leila: tokyo- is not one of her keywords
-			//if the message has an out of bounds exception
+		
+		//NOTE: that in the case of Bella an Atbash message like "SVOOL DLIOW GVHGRMT !" 
+		//will be returned as "SVOOL DLIOW GVHGRMT B", but this is fine because the whole
+		//point is to allow the user to compare which cipher option makes the most sense
+		//THE best situation to explain when you might need this is when you have a message 
+		// and you're not sure if it's atbash or caesar's shift (which we don't actually have)
+		
 		try {
+			//checks for out of bounds exceptions for ATBASH decryption
 			atbash a2 = new atbash(m, c);
 			if (a2.decrypt().length()<1 || a2.decrypt().equals(a2.encrypt())) {
+			//if the message is empty or the decrypted message is the same as the encrypted message
 				System.out.println("\t Atbash: DOES NOT TRANSLATE");
 			}
 			else {
@@ -122,6 +131,7 @@ public class useCiphers {
 		try {
 			binary b1 = new binary(m, c);
 			if (b1.decrypt().length()<1 || b1.decrypt().equals(b1.encrypt())) {
+			//if the message is empty or the decrypted message is the same as the encrypted message
 				System.out.println("\t Binary: DOES NOT TRANSLATE");
 			}
 			else {
@@ -137,11 +147,13 @@ public class useCiphers {
 		try {
 			leila l1 = new leila(m, c.toLowerCase());
 			if (l1.decrypt().length()<1 || l1.decrypt().equals(l1.encrypt())) {
+			//if the message is empty or the decrypted message is the same as the encrypted message
 				System.out.println("\t Leila:  DOES NOT TRANSLATE");
 			}
 			else {
 				System.out.print("\t Leila: " + l1.decrypt());
 				}
+		// this one has two different out of bounds exceptions so it has two catches
 		} catch (StringIndexOutOfBoundsException e) {
 			System.out.println("\t Leila: DOES NOT TRANSLATE");
 		}
@@ -152,11 +164,13 @@ public class useCiphers {
 		try {
 			bella c1 = new bella(m, c);
 			if (c1.decrypt().equals(c1.encrypt())) {
+			//the decrypted message is the same as the encrypted message
 				System.out.println("\t Bella:  DOES NOT TRANSLATE");
 			}
 			else {
 				System.out.println("\t Bella:  " + c1.decrypt());
 			}
+		// this one has two different out of bounds exceptions so it has two catches
 		} catch (StringIndexOutOfBoundsException e) {
 			System.out.println("\t Bella:  DOES NOT TRANSLATE");
 		}
