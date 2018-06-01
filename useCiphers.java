@@ -5,7 +5,7 @@ public class useCiphers {
 	public static void main(String[] args) {
 		Scanner aScan = new Scanner(System.in);
 		System.out.println("\t\t Welcome to Bond Encryption.\n\t\t     by Leila and Bella");
-		System.out.println("\n\t Enter the number for a corresponding action\n\t   1. Use a Cipher\n\t  2. Exit");
+		System.out.println("\n\t Enter the number for a corresponding action\n\t   1. Use a Cipher\n\t   2. Exit");
 		int action = aScan.nextInt();
 		while (action != 2 && (action == 1)) {
 			if (action == 1) {
@@ -42,20 +42,36 @@ public class useCiphers {
 				switch (action) {
 
 				case 2:
-					atbash t1 = new atbash(m, c);
-					System.out.println(t1);
+					try {
+						atbash t1 = new atbash(m, c);
+						System.out.println(t1);
+					} catch (StringIndexOutOfBoundsException e) {
+						System.out.println("\t Atbash for " + c + m + ": DOES NOT TRANSLATE");
+					}
 					break;
 				case 3:
-					binary t2 = new binary(m, c);
-					System.out.println(t2);
+					try {
+						binary t2 = new binary(m, c);
+						System.out.println(t2);
+					} catch (StringIndexOutOfBoundsException e) {
+						System.out.println("\t Binary for " + c + m + ": DOES NOT TRANSLATE");
+					}
 					break;
 				case 4:
-					// leila t3= new leila(m,c);
-					// System.out.println(t3);
+					try {
+						leila t3 = new leila(m, c.toLowerCase());
+						System.out.println(t3);
+					} catch (StringIndexOutOfBoundsException e) {
+						System.out.println("\t Leila for " + c + m + ": DOES NOT TRANSLATE");
+					}
 					break;
 				case 5:
-					bella t4 = new bella(m, c);
-					System.out.println(t4);
+					try {
+						bella t4 = new bella(m, c);
+						System.out.println(t4);
+					} catch (StringIndexOutOfBoundsException e) {
+						System.out.println("\t Bella for " + c + m + ": DOES NOT TRANSLATE");
+					}
 					break;
 				}
 				System.out.println("\nPress Enter to Continue.");
@@ -72,7 +88,7 @@ public class useCiphers {
 		String m = "";
 		c = c.toUpperCase();
 		// prints encrypted message to compare
-		System.out.println("\nTesting Decription of Encrypted Message: " + c);
+		System.out.println("\nTesting Decryption of Encrypted Message: " + c);
 
 		// General decryption format
 		// EncryptionType a1 = new EncryptionType(m, c);
@@ -80,7 +96,12 @@ public class useCiphers {
 
 		try {
 			atbash a2 = new atbash(m, c);
-			System.out.println("\t Atbash: " + a2.decrypt());
+			if (a2.decrypt().length()<1 || a2.decrypt().equals(a2.encrypt())) {
+				System.out.println("\t Atbash: DOES NOT TRANSLATE");
+			}
+			else {
+				System.out.println("\t Atbash: " + a2.decrypt());
+			}
 		} catch (StringIndexOutOfBoundsException e) {
 			System.out.println("\t Atbash: DOES NOT TRANSLATE");
 		}
@@ -88,23 +109,47 @@ public class useCiphers {
 		// Binary
 		try {
 			binary b1 = new binary(m, c);
-			System.out.println("\t Binary: " + b1.decrypt());
-		} catch (StringIndexOutOfBoundsException e) {
+			if (b1.decrypt().length()<1 || b1.decrypt().equals(b1.encrypt())) {
+				System.out.println("\t Binary: DOES NOT TRANSLATE");
+			}
+			else {
+				System.out.println("\t Binary: " + b1.decrypt());
+			}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("\t Binary: DOES NOT TRANSLATE");
+		}
+		catch (StringIndexOutOfBoundsException r) {
 			System.out.println("\t Binary: DOES NOT TRANSLATE");
 		}
 
 		try {
-			// leila l1 = new leila(m,c);
-			// System.out.println("\t Leila: " + l1.decrypt());
+			leila l1 = new leila(m, c.toLowerCase());
+			if (l1.decrypt().length()<1 || l1.decrypt().equals(l1.encrypt())) {
+				System.out.println("\t Leila:  DOES NOT TRANSLATE");
+			}
+			else {
+				System.out.print("\t Leila: " + l1.decrypt());
+				}
 		} catch (StringIndexOutOfBoundsException e) {
-			// System.out.println("\t Leila: DOES NOT TRANSLATE");
+			System.out.println("\t Leila: DOES NOT TRANSLATE");
+		}
+		catch (ArrayIndexOutOfBoundsException r) {
+			System.out.println("\t Leila: DOES NOT TRANSLATE");
 		}
 
 		try {
 			bella c1 = new bella(m, c);
-			System.out.println("\t Bella: " + c1.decrypt());
+			if (c1.decrypt().equals(c1.encrypt())) {
+				System.out.println("\t Bella:  DOES NOT TRANSLATE");
+			}
+			else {
+				System.out.println("\t Bella:  " + c1.decrypt());
+			}
 		} catch (StringIndexOutOfBoundsException e) {
-			System.out.println("\t Bella: DOES NOT TRANSLATE");
+			System.out.println("\t Bella:  DOES NOT TRANSLATE");
+		}
+		catch (ArrayIndexOutOfBoundsException r) {
+			System.out.println("\t Bella:  DOES NOT TRANSLATE");
 		}
 
 	}
