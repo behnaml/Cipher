@@ -98,10 +98,14 @@ public class useCiphers {
 		// prints encrypted message to compare
 		System.out.println("\nTesting Decryption of Encrypted Message: " + c);
 
-		// General decryption format
-		// EncryptionType a1 = new EncryptionType(m, c);
-		// System.out.println(“\t Encryption Type: “ + a1.decrypt());
-
+		//BELOW is the testing of each code to the same encrypted message
+		//they will print DOES NOT TRANSLATE if the code is not the same type
+		//It returns DOES NOT TRANSLATE for one of the following reason:
+			//the message is the exact same as the encrypted message
+				//E.G. in atbash: 01000001 will be returned unchanged
+			//if the entered encrypted message contains errors
+				//E.G. for Leila: tokyo- is not one of her keywords
+			//if the message has an out of bounds exception
 		try {
 			atbash a2 = new atbash(m, c);
 			if (a2.decrypt().length()<1 || a2.decrypt().equals(a2.encrypt())) {
