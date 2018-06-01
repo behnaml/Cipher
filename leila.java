@@ -54,7 +54,7 @@ public class leila {
 				String binumber = x.substring(0, x.indexOf("-"));
 				int placement = words.indexOf(binumber);
 				x = x.substring(binumber.length()+1);
-					String other = ABC.get(placement);
+					String other = ABC.get(placement)+(" ");
 					d += other;
 				
 			}
