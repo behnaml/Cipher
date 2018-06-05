@@ -5,6 +5,8 @@ public class atbash {
 	private String message;
 
 	public atbash(String m, String c) {
+		//constructs the message by filling in either one or both of the given message/encyrptedMessage depending
+		//on what was given
 		encryptedMessage = "";
 		message = "";
 
@@ -54,15 +56,15 @@ public class atbash {
 	public String decrypt() {
 		String d = "";
 		if (message.equals("")) {
-			alphabet a = new alphabet();
-			alphabet r = new alphabet();
-			r.reverse();
-			for (int i = 0; i < encryptedMessage.length(); i++) {
+			alphabet a = new alphabet(); //reg alphabet
+			alphabet r = new alphabet(); //reg alphabet
+			r.reverse(); //reverses alphabet
+			for (int i = 0; i < encryptedMessage.length(); i++) { //goes through letter by letter
 				String letter = encryptedMessage.substring(i, i + 1);
 				int ind = r.indexOf(letter);
-				if (ind == -1) {
+				if (ind == -1) { //if not in alphabet add unchanged character to d
 					d = d + letter;
-				} else {
+				} else { //otherwise translate character
 					d = d + a.get(ind);
 
 				}
@@ -74,6 +76,6 @@ public class atbash {
 	}
 
 	public String toString() {
-		return message + " = " + encryptedMessage;
+		return message + " = " + encryptedMessage; // toString format is (message = HVPPIGE)
 	}
 }
