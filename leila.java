@@ -31,39 +31,78 @@ public class leila {
 
 	public String encrypt() {
 		String e = "";
-		if (binarytype.equals("")) {
-			for (int i = 0; i < message.length(); i++) {
-				String letter = message.substring(i, i+1);
-				int placement = ABC.indexOf(letter);
-				String other = words.get(placement);
-				e += other + "-";
-			}
-			return e;
+	if (binarytype.equals("")) {
+		String[] newword = message.split(" ");
+		for (int i=0; i< newword.length; i++) {
+			String that = newword[i];
+			if (that.length()>1) {
+				for (int j=0; j<that.length(); j++) {
+					String subthis = that.substring(j, j+1);
+					int placement = ABC.indexOf(subthis);
+					String other = words.get(placement);
+					e +=  other;
+				}
+				}
+		
+			else {
+			int placement = ABC.indexOf(that);
+			String other = words.get(placement);
+			e += other;
+//			for (int i = 0; i < message.length(); i++) {
+//				String letter = message.substring(i, i+1);
+//				int placement = ABC.indexOf(letter);
+//				String other = words.get(placement);
+//				e += other + "-";
+	}
+			e += " ";
+		}
+	}
 			// EXECUTED ENCRYPTION
-		} else {
+			else {
 			// IF ALREADY DETERMINED, GET encryptedMessage
 			return binarytype;
 		}
+	return e;
 	}
 
 	public String decrypt() {
 		String d = "";
+		String newword[] = binarytype.split(" ");
 		if (message.equals("")) {
-			String x = binarytype;
-			while(x.indexOf("-")!=-1) {
-				String binumber = x.substring(0, x.indexOf("-"));
-				int placement = words.indexOf(binumber);
-				x = x.substring(binumber.length()+1);
-					String other = ABC.get(placement)+(" ");
-					d += other;
-				
-			}
-			return d;
+			for(int i=0; i<newword.length; i++) {
+			String that = newword[i];
+					while (that.indexOf("-")!=-1) {
+						String subthat = that.substring(0, that.indexOf("-"));
+						int placement = words.indexOf(subthat);
+						String other = ABC.get(placement);
+						that = that.substring(that.indexOf("-")+1, that.length());
+						d += other;
+						System.out.println(d);
+					}
+						int placement = words.indexOf(that);
+						String other = ABC.get(placement);
+						d += other;
+						d += " ";
+				}
+//			for(int i = 0; i<binarytype.length(); i++) {
+//				String partial = binarytype.substring(i, binarytype.indexOf(" "));
+//				String x = partial;
+//			while(x.indexOf("-")!=-1) {
+//				String binumber = x.substring(0, x.indexOf("-"));
+//				System.out.println(binumber);
+//				int placement = words.indexOf(binumber);
+//				x = x.substring(binumber.length()+1);
+//					String other = ABC.get(placement);
+//					d += other;
+//			}
+//			}
+		}
 			// EXECUTE DECRYPTION
-		} else {
+		 else {
 			// IF ALREADY DETERMINED, GET message
 			return message;
 		}
+		return d;
 
 	}
 
