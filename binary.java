@@ -32,10 +32,8 @@ public class binary {
 		String e = "";
 		if (binarytype.equals("")) {	
 			String[] newword = message.split(" ");
-			System.out.println(Arrays.toString(newword));
 			for (int i=0; i< newword.length; i++) {
 				String that = newword[i];
-				System.out.println(that);
 				if (that.length()>1) {
 					for (int j=0; j<that.length(); j++) {
 						String subthis = that.substring(j, j+1);
@@ -72,10 +70,8 @@ public class binary {
 	public String decrypt() {
 		String d = "";
 		String[] newword = binarytype.split(" ");
-		System.out.println(Arrays.toString(newword));
 		for (int i=0; i< newword.length; i++) {
 			String that = newword[i];
-			System.out.println(that);
 			if (that.length()>8) {
 				for (int j=0; j<that.length(); j+=8) {
 					String subthis = that.substring(j, j+8);
